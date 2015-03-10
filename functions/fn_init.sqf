@@ -82,7 +82,8 @@
             "76561198028156171", // Aquarius
             "76561197967080299", // Ferrard
             "76561197967886612", // Netkev
-            "76561197991278130"  // SuperÜ
+            "76561197991278130", // SuperÜ
+            "76561197991685206"  // blip2
         ]) or (serverCommandAvailable "#kick")) then //(serverCommandAvailable "#kick")
         {
             createDialog 'adminMenuDialog';
