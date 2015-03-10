@@ -5,7 +5,7 @@ class CfgPatches
 		units[] = {};
 		weapons[] = {};
 		worlds[] = {};
-		requiredAddons[] = {};
+		requiredAddons[] = {"a3_data_f","a3data"};
 		requiredVersion = 0.2;
 		author[] = {"Snippers","Wolfenswan"};
 		authorUrl = "wwww.folkarps.com";
@@ -28,4 +28,11 @@ class CfgFunctions
 			class endMission {postInit = 1};
 		};
 	};
+};
+
+class CfgDifficulties {
+  default = "Veteran";
+  defaultEasy = "Veteran";
+  defaultNormal = "Veteran";
+  defaultHard = "Veteran";
 };
