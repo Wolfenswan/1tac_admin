@@ -38,9 +38,11 @@
         private["_curator","_placed"];
         _curator = _this select 0;
         _placed = _this select 1;
-
-        {    _x addCuratorEditableObjects [[_placed],true]
-        } forEach (allCurators - [_curator]);
+        {
+            if (_x getVariable ["FA_ADMIN",false]) then {
+                _x addCuratorEditableObjects [[_placed],true];
+            };
+        } forEach (allCurators);
         nil
     };
 
@@ -77,11 +79,11 @@
         _isValidCurator = false;
         {
             if (isNull (getAssignedCuratorUnit _x)) then {
-                if (_x getVariable ["SNIP_ADMIN",false]) then {
+                if (_x getVariable ["FA_ADMIN",false]) then {
                     _isValidCurator = true;
                 };
             } else {
-                if (_x getVariable ["SNIP_ADMIN",false]) then {
+                if (_x getVariable ["FA_ADMIN",false]) then {
                     if (!isPlayer _x) then {
                         _isValidCurator = true;
                     };
@@ -105,8 +107,8 @@
 
             _curator = (createGroup f_var_sideCenter) createUnit ["ModuleCurator_F",[0,0,0] , [], 0, ""];
             _curator setVariable ["Addons",3];
-            _curator setVariable ["owner",format["%1",_unit]];
-            _curator setVariable ["SNIP_ADMIN",true];
+            //_curator setVariable ["owner",format["%1",_unit]];
+            _curator setVariable ["FA_ADMIN",true];
 
             _addons = [];
             _cfgPatches = configfile >> "cfgpatches";
@@ -125,6 +127,10 @@
 
             _curator setCuratorWaypointCost 0;
             {_curator setCuratorCoef [_x,0];} forEach ["place","edit","delete","destroy","group","synchronize"];
+
+            if({!isNil _x} count ["f_param_AISkill_BLUFOR","f_param_AISkill_INDP","f_param_AISkill_OPFOR"] > 0) then {
+                        _curator addEventHandler ['CuratorObjectPlaced',{{[_x] call f_fnc_setAISkill;} forEach crew(_this select 1)}];
+            };
 
             // Do last, so that the 'sync' is minimal?
             _unit assignCurator _curator;
