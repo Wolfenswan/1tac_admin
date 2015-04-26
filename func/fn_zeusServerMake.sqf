@@ -11,7 +11,7 @@ if (!isNull (getAssignedCuratorLogic _unit)) exitWith{}; //already is a curator.
 _isValidCurator = false;
 {
     _isValidCurator = false;
-    if (isNull (getAssignedCuratorUnit _x)) then { 
+    if (isNull (getAssignedCuratorUnit _x)) then {
         if (_x getVariable ["SNIP_ADMIN",false]) then {
             _isValidCurator = true;
         };
@@ -27,7 +27,7 @@ _isValidCurator = false;
         unassignCurator _x;
         _unit assignCurator _x;
 
-        [[_x],'tac1_admin_fnc_zeusSetupSync',_unit] spawn BIS_fnc_MP;  
+        [[_x],'tac1_admin_fnc_zeusSetupSync',_unit] spawn BIS_fnc_MP;
     };
 } forEach allCurators;
 
@@ -38,9 +38,12 @@ if (!_isValidCurator) then {
     };
 
     _curator = (createGroup f_var_sideCenter) createUnit ["ModuleCurator_F",[0,0,0] , [], 0, ""];
-    _curator setVariable ["owner",format["%1",_unit,true]];
     _curator setVariable ["Addons",3,true];
     _curator setVariable ["SNIP_ADMIN",true,true];
+
+    if({!isNil _x} count ["f_param_AISkill_BLUFOR","f_param_AISkill_INDP","f_param_AISkill_OPFOR"] > 0) then {
+        _curator addEventHandler ['CuratorObjectPlaced',{{[_x] call f_fnc_setAISkill;} forEach crew(_this select 1)}];
+    };
 
     // Do earlier to prevent the the notification from appearing.
     _unit assignCurator _curator;
@@ -50,7 +53,7 @@ if (!_isValidCurator) then {
         sleep 6;
         {
             if (isPlayer _x) then {
-                _this addCuratorEditableObjects [[_x],true]; 
+                _this addCuratorEditableObjects [[_x],true];
             };
         } forEach playableUnits;
     };
@@ -58,5 +61,5 @@ if (!_isValidCurator) then {
     _curator setCuratorWaypointCost 0;
     {_curator setCuratorCoef [_x,0];} forEach ["place","edit","delete","destroy","group","synchronize"];
 
-    [[_curator],'tac1_admin_fnc_zeusSetupSync',_unit] spawn BIS_fnc_MP;  
+    [[_curator],'tac1_admin_fnc_zeusSetupSync',_unit] spawn BIS_fnc_MP;
 };
