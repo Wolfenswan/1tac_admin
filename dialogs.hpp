@@ -54,14 +54,14 @@ $[
 class playerListDialog {
 	idd = 1888;
 	movingEnable = 0;
-	onLoad="[] spawn fn_fillListBox;";
-	class controlsBackground {
+	onLoad="[] spawn tac1_admin_fnc_fillPlayerListBox;";
+	class controlsBackground { 
 		// define controls here
 	};
-	class objects {
+	class objects { 
 		// define controls here
 	};
-	class controls {
+	class controls { 
 		// define controls here
 		class playerListFrame: adminMenu_RscFrame
 		{
@@ -107,7 +107,7 @@ class playerListDialog {
 			y = 0.357 * safezoneH + safezoneY;
 			w = 0.0773437 * safezoneW;
 			h = 0.044 * safezoneH;
-            action="[] spawn fn_action_teleport;";
+            action="[] spawn tac1_admin_fnc_actionPlayerTeleport;";
 		};
 		class playerListReturnButton: adminMenu_RscButton
 		{
@@ -127,7 +127,7 @@ class playerListDialog {
 			y = 0.423 * safezoneH + safezoneY;
 			w = 0.0773437 * safezoneW;
 			h = 0.044 * safezoneH;
-            action="[] spawn fn_am_action_give_zeus;";
+            action="[] call tac1_admin_fnc_actionGiveZeus;";
 		};
 		class playerListButton3: adminMenu_RscButton
 		{
@@ -137,7 +137,7 @@ class playerListDialog {
 			y = 0.489 * safezoneH + safezoneY;
 			w = 0.0773437 * safezoneW;
 			h = 0.044 * safezoneH;
-            action="[] spawn fn_action_group_teleport;";
+            action="[] spawn tac1_admin_fnc_actionGroupTeleport;";
 		};
 		class playerListButton4: adminMenu_RscButton
 		{
@@ -157,21 +157,21 @@ class playerListDialog {
 			w = 0.0773437 * safezoneW;
 			h = 0.044 * safezoneH;
 		};
-
+				
 	};
 };
 
 class adminMenuDialog {
 	idd = 1889;
 	movingEnable = 0;
-	onLoad="[] spawn fn_fillMissionListBox;";
-	class controlsBackground {
+	onLoad="[] spawn tac1_admin_fnc_fillMissionEndingBox;";
+	class controlsBackground { 
 		// define controls here
 	};
-	class objects {
+	class objects { 
 		// define controls here
 	};
-	class controls {
+	class controls { 
         class adminMenuFrame: adminMenu_RscFrame
         {
             idc = -1;
@@ -183,7 +183,7 @@ class adminMenuDialog {
         class adminMenuTitle: adminMenu_RscText
         {
             idc = -1;
-            text = "FA Admin"; //--- ToDo: Localize;
+            text = "Admin Tool (by Snippers)"; //--- ToDo: Localize;
             x = 0.405119 * safezoneW + safezoneX;
             y = 0.2602 * safezoneH + safezoneY;
             w = 0.159844 * safezoneW;
@@ -228,7 +228,7 @@ class adminMenuDialog {
             y = 0.423 * safezoneH + safezoneY;
             w = 0.0825 * safezoneW;
             h = 0.022 * safezoneH;
-            action = "closeDialog 1889; [] spawn fn_ZEUS_make;";
+            action = "closeDialog 1889; [] call tac1_admin_fnc_actionGiveZeusSelf;";
         };
         class adminMenuButton4: adminMenu_RscButton
         {
@@ -258,7 +258,7 @@ class adminMenuDialog {
             y = 0.555 * safezoneH + safezoneY;
             w = 0.0825 * safezoneW;
             h = 0.022 * safezoneH;
-            action = "closeDialog 1889; [] spawn fn_ZEUS_ALL;";
+            action = "closeDialog 1889; [] call tac1_admin_fnc_actionZeusAddAllObjects;";
         };
         class adminMenuButton7: adminMenu_RscButton
         {
@@ -286,14 +286,14 @@ class adminMenuDialog {
 class missionEndingDialog {
 	idd = 1895;
     movingEnable = 0;
-	onLoad="[] spawn fn_fillMissionListBox;";
-	class controlsBackground {
+	onLoad="[] spawn tac1_admin_fnc_fillMissionEndingBox;";
+	class controlsBackground { 
 		// define controls here
 	};
-	class objects {
+	class objects { 
 		// define controls here
 	};
-	class controls {
+	class controls { 
         ////////////////////////////////////////////////////////
         // GUI EDITOR OUTPUT START (by Snippers, v1.063, #Lulocy)
         ////////////////////////////////////////////////////////
@@ -352,7 +352,7 @@ class missionEndingDialog {
             y = 0.599 * safezoneH + safezoneY;
             w = 0.0773437 * safezoneW;
             h = 0.044 * safezoneH;
-            action="[] spawn fn_admin_missionEnding_Smooth;";
+            action="[] spawn tac1_admin_fnc_endMissionSmooth;";
         };
         class endButtonInstant: adminMenu_RscButton
         {
@@ -362,13 +362,13 @@ class missionEndingDialog {
             y = 0.599 * safezoneH + safezoneY;
             w = 0.0773437 * safezoneW;
             h = 0.044 * safezoneH;
-            action="[] spawn fn_admin_missionEnding_Instant;";
+            action="[] spawn tac1_admin_fnc_endMissionInstant;";
         };
         ////////////////////////////////////////////////////////
         // GUI EDITOR OUTPUT END
         ////////////////////////////////////////////////////////
 
-
+        
     };
-
+    
 };

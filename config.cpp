@@ -1,14 +1,14 @@
 class CfgPatches 
 {
-	class FA_ADMIN_CONSOLE
+	class 1TAC_ADMIN_CONSOLE
 	{
 		units[] = {};
 		weapons[] = {};
 		worlds[] = {};
-		requiredAddons[] = {"a3_data_f","a3data"};
-		requiredVersion = 0.2;
-		author[] = {"Snippers","Wolfenswan"};
-		authorUrl = "wwww.folkarps.com";
+		requiredAddons[] = {};
+		requiredVersion = 1.0;
+		author[] = {"Snippers"};
+		authorUrl = "www.teamonetactical.com";
 	};
 };
 
@@ -16,23 +16,31 @@ class CfgPatches
 #include "dialogs.hpp"
 
 class CfgFunctions
-{	
-	//TODO: Proper function tree
-	class FA_ADMIN
+{
+    class tac1_admin
 	{
-		class admin_menu {
-			file = "FA_admin\functions";
-			class init {postInit = 1};
-			class teleport {postInit = 1};
-			class zeus {postInit = 1};
-			class endMission {postInit = 1};
+		class adminMenu
+		{
+			file="1tac_admin\func";
+            
+            class Init { 
+                postInit=1;
+				file = "1tac_admin\init.sqf";
+			};
+            class actionGiveZeus {};
+            class actionGiveZeusSelf {};
+            class actionGroupTeleport {};
+            class actionPlayerTeleport {};
+			class actionZeusAddAllObjects {};
+            class endMissionInstant {};
+            class endMissionSmooth {};
+            class fillMissionEndingBox {};
+            class fillPlayerListBox {};
+            class keyPressed {};
+            class zeusAddAllObjects {};
+            class zeusServerMake {};
+            class zeusServerObjectPlacedSync {};
+            class zeusSetupSync {};
 		};
 	};
-};
-
-class CfgDifficulties {
-  default = "Veteran";
-  defaultEasy = "Veteran";
-  defaultNormal = "Veteran";
-  defaultHard = "Veteran";
 };

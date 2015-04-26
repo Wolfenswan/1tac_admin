@@ -1,3 +1,5 @@
+
+
 // Control types
 #define CT_STATIC           0
 #define CT_BUTTON           1
@@ -74,7 +76,7 @@
 
 #define SL_TEXTURES       0x10
 
-// progress bar
+// progress bar 
 #define ST_VERTICAL       0x01
 #define ST_HORIZONTAL     0
 
@@ -114,7 +116,7 @@ class adminMenu_RscText
     y = 0;
     h = 0;
     w = 0;
-
+   
 };
 
 class RscPicture
@@ -139,7 +141,7 @@ class RscPicture
 
 class adminMenu_RscButton
 {
-
+    
    access = 0;
     type = CT_BUTTON;
     text = "";
@@ -236,7 +238,7 @@ class adminMenu_RscListBox {
     autoScrollDelay = 5;
     autoScrollRewind = 0;
 };
-
+	
 	/*
 
 class RscListBox
